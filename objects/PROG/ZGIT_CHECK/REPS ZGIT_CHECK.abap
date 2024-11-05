@@ -6,3 +6,4 @@
 REPORT ZGIT_CHECK.
 
 * Test check in to Git
+* More statements
