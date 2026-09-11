@@ -1,1 +1,1 @@
-{"name":"kommareddy-workbench","version":"1.0.0","description":"kommareddy-workbench","repositoryLayout":{"formatVersion":4,"format":"json","objectStorage":"plain","metaInformation":".gctsmetadata/","tableContent":"true"}}
+{"name":"kommareddy-workbench","version":"1.0.0","description":"kommareddy-workbench","repositoryLayout":{"formatVersion":4,"format":"json","objectStorage":"plain","metaInformation":".gctsmetadata/","tableContent":"true"},"configurations":[{"key":"VCS_AUTOMATIC_PUSH","value":"true"}]}
