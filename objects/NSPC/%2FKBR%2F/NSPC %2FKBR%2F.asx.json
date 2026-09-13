@@ -1,0 +1,31 @@
+[
+ {
+  "table":"TRNSPACET",
+  "data":
+  [
+   {
+    "NAMESPACE":"/KBR/",
+    "ROLE":"P",
+    "REPLICENSE":"",
+    "SSCRFLAG":"",
+    "SAPFLAG":"",
+    "GEN_ONLY":"",
+    "CHANGEUSER":"DEVELOPER",
+    "CHANGEDATE":"2026-03-13",
+    "MT_TYPE":""
+   }
+  ]
+ },
+ {
+  "table":"TRNSPACETT",
+  "data":
+  [
+   {
+    "NAMESPACE":"/KBR/",
+    "SPRAS":"E",
+    "DESCRIPTN":"b",
+    "OWNER":"Bhaskar"
+   }
+  ]
+ }
+]
