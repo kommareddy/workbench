@@ -1,3 +1,7 @@
-CLASS zcl_api_users_resource DEFINITION PUBLIC CREATE PUBLIC.
-  PUBLIC SECTION.
-    INTERFACES zif_rest_resource.
+class ZCL_API_USERS_RESOURCE definition
+  public
+  create public .
+
+public section.
+
+  interfaces ZIF_REST_RESOURCE .
