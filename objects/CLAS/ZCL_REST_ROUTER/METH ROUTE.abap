@@ -3,7 +3,7 @@
           lv_class_name    TYPE string,
           lo_resource      TYPE REF TO zif_rest_resource.
 
-    " 1. Extract the resource name from the path.
+    " 1, Extract the resource name from the path.
     " Example: path is "/v1/users". We want "users".
     " (You can make this regex/parsing much more robust later)
     SPLIT io_context->path AT '/' INTO TABLE DATA(lt_path_segments).
