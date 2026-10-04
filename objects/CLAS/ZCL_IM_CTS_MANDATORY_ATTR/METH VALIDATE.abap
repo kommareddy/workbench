@@ -1,4 +1,5 @@
   method validate.
+    " OBLIGATORY = the attribute must be present; REFERENCE = its value must be filled.
     loop at it_cfg into data(ls_cfg).
       read table it_attributes into data(ls_attr)
         with key attribute = ls_cfg-attr.
