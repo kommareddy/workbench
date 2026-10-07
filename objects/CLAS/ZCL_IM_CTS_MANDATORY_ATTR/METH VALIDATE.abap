@@ -16,8 +16,8 @@
 
       if ls_cfg-reference = abap_true
          and lv_attached = abap_true
-         and ls_attr-reference is initial.
-        " Scenario 2: attached, but value column blank.
+         and is_blank_or_placeholder( ls_attr-reference ) = abap_true.
+        " Scenario 2: attached, but value column blank or only a placeholder.
         append value #( msgid = c_msgid
                         msgty = 'E'
                         msgno = c_msgno_empty

@@ -56,6 +56,13 @@ class ltc_validate definition
     methods empty_config_ok         for testing.
     methods multiple_failures       for testing.
 
+    " DEVSECOPS-11: placeholder values count as empty for REFERENCE.
+    methods placeholder_tbd          for testing.
+    methods placeholder_na_lower     for testing.
+    methods placeholder_dash_blanks  for testing.
+    methods real_key_ok              for testing.
+    methods placeholder_obligatory_ok for testing.
+
     " check_before_release( ) integration cases (gate, ERR_MESSAGES, CANCEL)
     methods release_task_passes     for testing.
     methods release_wb_blocks       for testing.
@@ -189,6 +196,74 @@ class ltc_validate implementation.
       act = lt_err[ msgv1 = 'ZSTORY' ]-msgno      exp = '001' ).
     cl_abap_unit_assert=>assert_equals(
       act = lt_err[ msgv1 = 'ZTARGET_SYS' ]-msgno exp = '002' ).
+  endmethod.
+
+  method placeholder_tbd.
+    " Scenario 1: ZSTORY = TBD on a reference-mandatory attr -> 002, as empty.
+    data(lt_cfg) = value ty_oblig_cfg_t(
+      ( cfg( iv_attr = 'ZSTORY' iv_obligatory = abap_false iv_reference = abap_true ) ) ).
+    data(lt_att) = value trattributes(
+      ( attr( iv_attr = 'ZSTORY' iv_reference = 'TBD' ) ) ).
+
+    data(lt_err) = mo_cut->validate( it_cfg = lt_cfg it_attributes = lt_att ).
+
+    cl_abap_unit_assert=>assert_equals( act = lines( lt_err ) exp = 1 ).
+    cl_abap_unit_assert=>assert_equals( act = lt_err[ 1 ]-msgno exp = '002' ).
+    cl_abap_unit_assert=>assert_equals( act = lt_err[ 1 ]-msgv1 exp = 'ZSTORY' ).
+  endmethod.
+
+  method placeholder_na_lower.
+    " Scenario 2a: n/a in lower case -> blocked the same way (002).
+    data(lt_cfg) = value ty_oblig_cfg_t(
+      ( cfg( iv_attr = 'ZSTORY' iv_obligatory = abap_false iv_reference = abap_true ) ) ).
+    data(lt_att) = value trattributes(
+      ( attr( iv_attr = 'ZSTORY' iv_reference = 'n/a' ) ) ).
+
+    data(lt_err) = mo_cut->validate( it_cfg = lt_cfg it_attributes = lt_att ).
+
+    cl_abap_unit_assert=>assert_equals( act = lines( lt_err ) exp = 1 ).
+    cl_abap_unit_assert=>assert_equals( act = lt_err[ 1 ]-msgno exp = '002' ).
+    cl_abap_unit_assert=>assert_equals( act = lt_err[ 1 ]-msgv1 exp = 'ZSTORY' ).
+  endmethod.
+
+  method placeholder_dash_blanks.
+    " Scenario 2b: a dash with blanks around it -> blocked the same way (002).
+    data(lt_cfg) = value ty_oblig_cfg_t(
+      ( cfg( iv_attr = 'ZSTORY' iv_obligatory = abap_false iv_reference = abap_true ) ) ).
+    data(lt_att) = value trattributes(
+      ( attr( iv_attr = 'ZSTORY' iv_reference = ' - ' ) ) ).
+
+    data(lt_err) = mo_cut->validate( it_cfg = lt_cfg it_attributes = lt_att ).
+
+    cl_abap_unit_assert=>assert_equals( act = lines( lt_err ) exp = 1 ).
+    cl_abap_unit_assert=>assert_equals( act = lt_err[ 1 ]-msgno exp = '002' ).
+    cl_abap_unit_assert=>assert_equals( act = lt_err[ 1 ]-msgv1 exp = 'ZSTORY' ).
+  endmethod.
+
+  method real_key_ok.
+    " Scenario 3: a real key such as DEVSECOPS-11 -> no error, release proceeds.
+    data(lt_cfg) = value ty_oblig_cfg_t(
+      ( cfg( iv_attr = 'ZSTORY' iv_obligatory = abap_false iv_reference = abap_true ) ) ).
+    data(lt_att) = value trattributes(
+      ( attr( iv_attr = 'ZSTORY' iv_reference = 'DEVSECOPS-11' ) ) ).
+
+    data(lt_err) = mo_cut->validate( it_cfg = lt_cfg it_attributes = lt_att ).
+
+    cl_abap_unit_assert=>assert_initial( lt_err ).
+  endmethod.
+
+  method placeholder_obligatory_ok.
+    " A placeholder in an OBLIGATORY-only attr is NOT an error: presence is
+    " satisfied and the value is not required (REFERENCE flag off). Guards
+    " against the placeholder rule leaking into the obligatory-only branch.
+    data(lt_cfg) = value ty_oblig_cfg_t(
+      ( cfg( iv_attr = 'ZSTORY' iv_obligatory = abap_true iv_reference = abap_false ) ) ).
+    data(lt_att) = value trattributes(
+      ( attr( iv_attr = 'ZSTORY' iv_reference = 'TBD' ) ) ).
+
+    data(lt_err) = mo_cut->validate( it_cfg = lt_cfg it_attributes = lt_att ).
+
+    cl_abap_unit_assert=>assert_initial( lt_err ).
   endmethod.
 
   method release_task_passes.
