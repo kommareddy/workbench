@@ -1,0 +1,8 @@
+CLASS zcl_s1_demo DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+    INTERFACES zif_s1_demo .
