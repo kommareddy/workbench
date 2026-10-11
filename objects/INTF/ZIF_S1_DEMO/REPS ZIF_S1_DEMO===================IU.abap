@@ -1,0 +1,5 @@
+INTERFACE zif_s1_demo
+  PUBLIC .
+
+ METHODS get.
+ENDINTERFACE.
