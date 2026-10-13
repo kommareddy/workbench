@@ -4,6 +4,7 @@ private section.
     " Governed request types (TRFUNCTION): K = Workbench, W = Customizing.
     " Everything else (tasks S/R/X/Q, transport of copies T, relocations
     " C/O/E, piece lists, ...) passes through untouched.
+
     c_type_workbench   type trfunction value 'K',
     c_type_customizing type trfunction value 'W'.
 
