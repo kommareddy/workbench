@@ -1,13 +1,20 @@
-CLASS zcl_api_request_context DEFINITION PUBLIC CREATE PUBLIC.
-  PUBLIC SECTION.
-    DATA: method       TYPE string READ-ONLY,
-          path         TYPE string READ-ONLY,
-          body_payload TYPE string READ-ONLY.
+class ZCL_API_REQUEST_CONTEXT definition
+  public
+  create public .
 
-METHODS constructor
-      IMPORTING io_server TYPE REF TO if_http_server
-                iv_trace  TYPE abap_bool OPTIONAL.
+public section.
 
-    METHODS get_header
-      IMPORTING iv_name          TYPE string
-      RETURNING VALUE(rv_value)  TYPE string.
+  data METHOD type STRING read-only .
+  data PATH type STRING read-only .
+  data BODY_PAYLOAD type STRING read-only .
+
+  methods CONSTRUCTOR
+    importing
+      !IO_SERVER type ref to IF_HTTP_SERVER
+      !IV_TRACE type ABAP_BOOL optional
+      !IV_GET_HEADER type ABAP_BOOL optional .
+  methods GET_HEADER
+    importing
+      !IV_NAME type STRING
+    returning
+      value(RV_VALUE) type STRING .
