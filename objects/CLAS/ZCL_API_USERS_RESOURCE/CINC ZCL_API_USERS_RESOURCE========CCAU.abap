@@ -2,7 +2,7 @@
 CLASS ltc_users_resource DEFINITION FINAL FOR TESTING
   DURATION SHORT RISK LEVEL HARMLESS.
   PRIVATE SECTION.
-    METHODS passes FOR TESTING.
+    "METHODS passes FOR TESTING.
     " DEVSECOPS-13: the respond() decision is unit-tested directly.
     " The live header read in get() (io_context->get_header) is NOT unit-tested:
     " ZCL_API_REQUEST_CONTEXT has no test seam (its only constructor needs a
@@ -16,9 +16,7 @@ ENDCLASS.
 CLASS zcl_api_users_resource DEFINITION LOCAL FRIENDS ltc_users_resource.
 
 CLASS ltc_users_resource IMPLEMENTATION.
-  METHOD passes.
-    cl_abap_unit_assert=>assert_equals( act = 2 exp = 2 msg = 'always passes' ).
-  ENDMETHOD.
+
 
   METHOD blank_name_is_rejected.
     DATA(lo_cut) = NEW zcl_api_users_resource( ).
