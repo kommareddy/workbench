@@ -1,6 +1,8 @@
   METHOD zif_rest_resource~get.
-    " Simulated business logic for a GET request
-    " Add a test unit
-    ev_payload = |\{ "users": [ \{ "id": 1, "name": "Alice" \}, \{ "id": 2, "name": "Bob" \} ] \}| ##NO_TEXT.
-    ev_status_code = 200.
+    " Reject a blank user name (empty or spaces-only) with a 400; otherwise return the list.
+    DATA(lv_user_name) = io_context->get_header( 'user_name' ).
+    respond(
+      EXPORTING iv_user_name  = lv_user_name
+      IMPORTING ev_payload     = ev_payload
+                ev_status_code = ev_status_code ).
   ENDMETHOD.
