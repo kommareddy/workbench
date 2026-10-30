@@ -20,6 +20,20 @@
   ]
  },
  {
+  "table":"FUNCT",
+  "data":
+  [
+   {
+    "SPRAS":"E",
+    "FUNCNAME":"Z_GIT_DEMO_GREET",
+    "PARAMETER":"IV_SPARS",
+    "KIND":"P",
+    "VERSION":1,
+    "STEXT":"Language Key"
+   }
+  ]
+ },
+ {
   "table":"FUPARAREF",
   "data":
   [
@@ -54,6 +68,27 @@
     "REFERENCE":"X",
     "PPOSITION":1,
     "OPTIONAL":"X",
+    "TYPE":"X",
+    "CLASS":"",
+    "REF_CLASS":"",
+    "LINE_OF":"",
+    "TABLE_OF":"",
+    "RESFLAG1":"",
+    "RESFLAG2":"",
+    "RESFLAG3":"",
+    "RESFLAG4":"",
+    "RESFLAG5":""
+   },
+   {
+    "FUNCNAME":"Z_GIT_DEMO_GREET",
+    "R3STATE":"A",
+    "PARAMETER":"IV_SPARS",
+    "PARAMTYPE":"I",
+    "STRUCTURE":"SPRAS",
+    "DEFAULTVAL":"",
+    "REFERENCE":"X",
+    "PPOSITION":2,
+    "OPTIONAL":"",
     "TYPE":"X",
     "CLASS":"",
     "REF_CLASS":"",
