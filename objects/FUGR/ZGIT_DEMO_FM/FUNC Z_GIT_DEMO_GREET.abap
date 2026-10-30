@@ -2,7 +2,7 @@ FUNCTION Z_GIT_DEMO_GREET.
 *"----------------------------------------------------------------------
 *"*"Local Interface:
 *"  IMPORTING
-*"     REFERENCE(IV_NAME) TYPE  STRING
+*"     REFERENCE(IV_NAME) TYPE  STRING DEFAULT 'Hello'
 *"  EXPORTING
 *"     REFERENCE(EV_TEXT) TYPE  STRING
 *"----------------------------------------------------------------------
