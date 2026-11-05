@@ -9,6 +9,13 @@
       RETURN.
     ENDIF.
 
+    IF strlen( lv_trimmed ) > 12.
+      " User name longer than the SAP limit (12): refuse with a 400 naming the field.
+      ev_payload = |\{ "error": "user_name must be at most 12 characters" \}| ##NO_TEXT.
+      ev_status_code = 400.
+      RETURN.
+    ENDIF.
+
     " Simulated business logic for a GET request
     ev_payload = |\{ "users": [ \{ "id": 1, "name": "Alice" \}, \{ "id": 2, "name": "Bob" \} ] \}| ##NO_TEXT.
     ev_status_code = 200.
