@@ -16,6 +16,14 @@
       RETURN.
     ENDIF.
 
+    IF lv_trimmed CS ` `.
+      " User name with a space between characters: SAP user names cannot contain one.
+      " lv_trimmed is already condensed, so any space left in it is between characters.
+      ev_payload = |\{ "error": "user_name must not contain spaces" \}| ##NO_TEXT.
+      ev_status_code = 400.
+      RETURN.
+    ENDIF.
+
     " Simulated business logic for a GET request
     ev_payload = |\{ "users": [ \{ "id": 1, "name": "Alice" \}, \{ "id": 2, "name": "Bob" \} ] \}| ##NO_TEXT.
     ev_status_code = 200.
